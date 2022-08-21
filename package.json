@@ -1,0 +1,19 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fs.js",
+  "scripts": {
+    "start": "nodemon http.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almamunkhan09/Nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/almamunkhan09/Nodejs/issues"
+  },
+  "homepage": "https://github.com/almamunkhan09/Nodejs#readme"
+}
