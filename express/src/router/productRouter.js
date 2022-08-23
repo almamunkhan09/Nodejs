@@ -515,14 +515,29 @@ var products = [
     }
 ]
 
-productRouter.route("/")
+// let menu = [
+//     { link: "/", name: "Home" },
+//     { link: "/category",name: "Category" },
+//     { link: "/products",name: "Products" }
+// ]
+
+
+function router(menu){
+
+    productRouter.route("/")
     .get((req,res) => {
-        res.send(products)
+        res.render('products',{title:`products's list`,data:products,menu})
     });
 
-productRouter.route("/details")
+    productRouter.route("/details")
     .get((req,res) =>{
         res.send("Product details")
     });
 
-    module.exports = productRouter;
+    return productRouter;
+    
+}
+
+
+
+module.exports = router;

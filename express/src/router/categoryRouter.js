@@ -24,13 +24,35 @@ var category = [
     }
 ]
 
-categoryRouter.route("/").get((req,res) =>{
-    res.send(category)
-});
+// let menu = [
+//     { link: "/", name: "Home" },
+//     { link: "/category",name: "Category" },
+//     { link: "/products",name: "Products" }
+// ]
 
-categoryRouter.route("/details")
-.get((req,res) => {
-    res.send("category details")
-});
 
-module.exports = categoryRouter;
+function router(menu) {
+
+    categoryRouter.route("/").get((req,res) =>{
+        res.render('category',{title:"category page",data:category,menu})
+    });
+    
+    categoryRouter.route("/details")
+    .get((req,res) => {
+        res.send("category details")
+    });
+
+    return categoryRouter;
+
+};
+
+// categoryRouter.route("/").get((req,res) =>{
+//     res.render('category',{title:"category page",data:category,menu})
+// });
+
+// categoryRouter.route("/details")
+// .get((req,res) => {
+//     res.send("category details")
+// });
+
+module.exports = router;

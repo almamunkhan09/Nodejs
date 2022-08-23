@@ -4,16 +4,31 @@ const app = express();
 let dotenv = require('dotenv');
 dotenv.config()
 
+
+let menu = [
+    { link: "/", name: "Home" },
+    { link: "/category",name: "Category" },
+    { link: "/products",name: "Products" }
+]
+
+app.use(express.static(__dirname+'/public'));
+app.set("view engine", "ejs");
+app.set("views","./src/views");
+
+
+
+
+
 let port = process.env.PORT || 9000;
-const categoryRouter = require("./src/router/categoryRouter");
-const productRouter = require("./src/router/productRouter")
+const categoryRouter = require("./src/router/categoryRouter")(menu);
+const productRouter = require("./src/router/productRouter")(menu);
 
 
 
 
 app.get("/",(req,res) =>{
 
-    res.send("<h2>Hello express server </h2>");
+    res.render("index",{title:"Home Page", menu });
 
 });
 
