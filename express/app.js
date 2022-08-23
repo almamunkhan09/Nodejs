@@ -4,6 +4,13 @@ const app = express();
 let dotenv = require('dotenv');
 dotenv.config()
 
+let morgan = require("morgan");
+const fs = require('fs');
+
+
+
+
+app.use(morgan('short',{stream:fs.createWriteStream("./app.log")}))
 
 let menu = [
     { link: "/", name: "Home" },
