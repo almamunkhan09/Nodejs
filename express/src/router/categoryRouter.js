@@ -1,6 +1,12 @@
 const express = require('express');
 categoryRouter = express.Router();
 
+let mongodb = require('mongodb').MongoClient;
+let dotenv = require('dotenv');
+const { response } = require('express');
+dotenv.config()
+url = process.env.MONGOURL
+
 var category = [
     {
         "id":1,
@@ -34,7 +40,23 @@ var category = [
 function router(menu) {
 
     categoryRouter.route("/").get((req,res) =>{
-        res.render('category',{title:"category page",data:category,menu})
+
+        mongodb.connect(url,function(err,dc){
+            if (err) {
+                res.status(500).send("Error While connecting with database")
+            }else{
+                let database01 = dc.db('aug');
+                database01.collection('categories').find().toArray(function(err,result){
+                    if(err){
+                        res.status(203).send("Error while fatching the data");
+
+                    }else{
+                        res.render('category',{title:"category page",data:result,menu})
+                    }
+                })
+            }
+        })
+        // res.render('category',{title:"category page",data:category,menu})
     });
     
     categoryRouter.route("/details")
